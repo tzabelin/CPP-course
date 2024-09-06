@@ -14,7 +14,7 @@
  * this function is required to have a local vector of strings variable,
  * which is initially empty. This local variable is used as the argument when
  * calling the other functions.
- */
+ */ 
 void CMDReader();
 
 /**
