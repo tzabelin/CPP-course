@@ -37,7 +37,7 @@ void PokemonCollection::SortByName()
 {
     pokemons_.sort([](std::pair<std::string, size_t> a, std::pair<std::string, size_t> b)
                                   {
-                                      return a.first>b.first;;
+                                      return a.first<b.first;;
                                   });
 }
 
@@ -45,6 +45,6 @@ void PokemonCollection::SortById()
 {
     pokemons_.sort([](std::pair<std::string, size_t> a, std::pair<std::string, size_t> b)
                                   {
-                                      return a.second>b.second;;
+                                      return a.second<b.second;;
                                   });
 }
