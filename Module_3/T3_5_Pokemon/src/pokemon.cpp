@@ -1,3 +1,50 @@
 #include "pokemon.hpp"
 
 
+PokemonCollection::PokemonCollection(PokemonCollection collection,
+                      PokemonCollection collection2)
+                      {
+                        pokemons_.insert(pokemons_.end(), collection.pokemons_.begin(), collection.pokemons_.end());
+                        pokemons_.insert(pokemons_.end(), collection2.pokemons_.begin(), collection2.pokemons_.end());
+                        pokemons_.sort();
+                        pokemons_.unique();
+                      }
+void PokemonCollection::Add(const std::string &name, size_t id)
+{
+    pokemons_.push_back(std::make_pair(name, id));
+}
+
+bool PokemonCollection::Remove(const std::string &name, size_t id)
+{
+    for (auto it = pokemons_.begin(); it != pokemons_.end(); ++it)
+    {
+        if (it->first == name && it->second == id)
+        {
+            pokemons_.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
+void PokemonCollection::Print() const
+{
+    for (auto pockemon: pokemons_)
+    {
+        std::cout << "id: " << pockemon.second << ", name: " << pockemon.first << std::endl;
+    }
+}
+void PokemonCollection::SortByName()
+{
+    pokemons_.sort([](std::pair<std::string, size_t> a, std::pair<std::string, size_t> b)
+                                  {
+                                      return a.first>b.first;;
+                                  });
+}
+
+void PokemonCollection::SortById()
+{
+    pokemons_.sort([](std::pair<std::string, size_t> a, std::pair<std::string, size_t> b)
+                                  {
+                                      return a.second>b.second;;
+                                  });
+}
