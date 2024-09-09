@@ -19,7 +19,13 @@
  *
  */
 class Dog : public Mammal {
-  
+ public:
+  Dog(std::string name, double weight) : Mammal(weight), name_(name){};
+  std::string GetName();
+  static std::string MakeSound();
+
+ private:
+  std::string name_;
 };
 
 #endif

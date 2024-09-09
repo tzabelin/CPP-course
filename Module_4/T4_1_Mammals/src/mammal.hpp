@@ -15,7 +15,7 @@ class Mammal {
    *
    * \param weight weight of the mammal
    */
-  Mammal(double weight);
+  Mammal(double weight): weight_(weight){};
 
   /**
    * \brief Get the weight of the object
