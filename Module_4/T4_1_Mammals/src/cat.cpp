@@ -7,6 +7,6 @@
     }
     std::string Cat::MakeSound()
     {
-        return "Meow!";
+        return "Meow";
     }
 
