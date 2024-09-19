@@ -39,6 +39,7 @@ class Creature {
    * \return the remaining hitpoints as an integer
    */
   int GetHitPoints() const;
+  std::ostream& Creature::operator<<(std::ostream& os, const Creature& creature);
 
  private:
   std::string name_;
