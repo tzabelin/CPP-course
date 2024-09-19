@@ -39,7 +39,6 @@ class Creature {
    * \return the remaining hitpoints as an integer
    */
   int GetHitPoints() const;
-  std::ostream& Creature::operator<<(std::ostream& os, const Creature& creature);
 
  private:
   std::string name_;
@@ -49,5 +48,6 @@ class Creature {
 
 // Declare the '<<' operator here
 
+  std::ostream& operator<<(std::ostream& os, const Creature& creature);
 
 #endif
