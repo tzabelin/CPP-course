@@ -8,4 +8,7 @@ const std::string& Creature::GetType() const { return type_; }
 int Creature::GetHitPoints() const { return hitpoints_; }
 
 // Implement the '<<' operator here
-
+std::ostream& operator<<(std::ostream& os, const Creature& creature) {
+    os << creature.GetType() << " " << creature.GetName() << " with " << creature.GetHitPoints() << " HP";
+    return os;
+}
