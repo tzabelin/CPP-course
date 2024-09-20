@@ -33,10 +33,10 @@ bool operator<(const GeomVector& a, const GeomVector& b) {
 }
 
 
-bool operator<(const GeomVector& a, const GeomVector& b) {
+bool operator==(const GeomVector& a, const GeomVector& b) {
     return a.Length() == b.Length();
 }
 
-bool operator<(const GeomVector& a, const GeomVector& b) {
+bool operator!=(const GeomVector& a, const GeomVector& b) {
     return a.Length() != b.Length();
 }
