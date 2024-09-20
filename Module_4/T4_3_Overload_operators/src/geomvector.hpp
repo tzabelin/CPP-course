@@ -52,7 +52,7 @@ class GeomVector {
    * \return reference to the output stream
    */
   friend std::ostream& operator<<(std::ostream& out, const GeomVector& a);
-  GeomVector GeomVector::operator/(double a);
+  GeomVector operator/(double a);
  private:
   double x_, y_, z_;
 };
