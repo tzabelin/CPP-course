@@ -24,19 +24,19 @@ GeomVector GeomVector::operator/(double a) {
     return GeomVector( x_ / a, y_ / a, z_ / a);
 }
 
-bool operator>(const GeomVector& a, const GeomVector& b) {
-    return a.Length() > b.Length();
+bool GeomVector::operator>(const GeomVector& b) {
+    return Length() > b.Length();
 }
 
-bool operator<(const GeomVector& a, const GeomVector& b) {
-    return a.Length() < b.Length();
+bool GeomVector::operator<(const GeomVector& b) {
+    return Length() < b.Length();
 }
 
 
-bool operator==(const GeomVector& a, const GeomVector& b) {
-    return a.Length() == b.Length();
+bool GeomVector::operator==(const GeomVector& b) {
+    return Length() == b.Length();
 }
 
-bool operator!=(const GeomVector& a, const GeomVector& b) {
-    return a.Length() != b.Length();
+bool GeomVector::operator!=(const GeomVector& b) {
+    return Length() != b.Length();
 }
