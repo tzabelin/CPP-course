@@ -14,7 +14,6 @@
 class Aviary {
  public:
   Aviary() {}
-
   /**
    * \brief TODO: method Add adds the given bird to the aviary.
    *
@@ -25,7 +24,7 @@ class Aviary {
    * \param bird A pointer to a bird object.
    * \return nothing
    */
-  
+  void Add(Bird* bird);
   /**
    * \brief TODO: method SpeakAll calls the Speak method with the given
    * parameter on all birds in the aviary.
@@ -35,7 +34,7 @@ class Aviary {
    * \param os A reference to the desired ostream.
    * \return nothing
    */
-  
+  void SpeakAll(std::ostream& os) const;
   /**
    * \brief TODO: method Size returns the number of birds in the aviary.
    *
@@ -44,7 +43,7 @@ class Aviary {
    *
    * \return How many birds there are in the aviary.
    */
-  
+  size_t Size() const;
   /**
    * \brief TODO: non-const version of the indexing operator [].
    *
@@ -53,7 +52,7 @@ class Aviary {
    * \param idx desired index as an size_t integer value.
    * \return A pointer to the bird (Bird*) at the index given as an argument
    */
-  
+  Bird* operator[](size_t idx);
   /**
    * \brief TODO: const version of the indexing operator [].
    *
@@ -63,15 +62,19 @@ class Aviary {
    * \return A pointer to the bird (const Bird*) at the index given as an
    * argument
    */
-  
+  Bird* operator[](size_t idx) const;
   /**
    * \brief TODO: destructor. Takes no parameters.
    *
    * \return nothing
    */
+  ~Aviary();
+
    private:
   // TODO: declare the required members
-  
+    std::vector<Bird*> birds_;
+    Aviary(Aviary &A);
+    Aviary &operator=(Aviary &A);
 };
 
 #endif
