@@ -13,7 +13,7 @@
  */
 class Aviary {
  public:
-  Aviary() {}
+  Aviary();
   /**
    * \brief TODO: method Add adds the given bird to the aviary.
    *
