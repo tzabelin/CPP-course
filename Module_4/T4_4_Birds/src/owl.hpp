@@ -14,7 +14,7 @@
  * implemented in this header file.
  */
 
-class Owl : Bird{
+class Owl : public Bird{
  public:
     Owl(std::string name):Bird(name){}
     void Speak(std::ostream& os) const override{
