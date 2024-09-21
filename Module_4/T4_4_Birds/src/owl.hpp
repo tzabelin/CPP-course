@@ -14,6 +14,12 @@
  * implemented in this header file.
  */
 
-
+class Owl : Bird{
+ public:
+    Owl(std::string name):Bird(name){}
+    void Speak(std::ostream& os) const override{
+        os << this->GetName() << ": WHUU\n";
+    }
+};
 
 #endif

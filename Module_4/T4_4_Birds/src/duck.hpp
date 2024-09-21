@@ -13,7 +13,11 @@
  * Due to the simplicity of the class, all of its member functions are
  * implemented in this header file.
  */
-
-
-
+class Duck : Bird{
+ public:
+    Duck(std::string name):Bird(name){}
+    void Speak(std::ostream& os) const override{
+        os << this->GetName() << ": QUACK\n";
+    }
+};
 #endif
