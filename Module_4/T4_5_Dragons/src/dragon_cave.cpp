@@ -31,10 +31,15 @@ DragonCave::~DragonCave()
 std::ostream& operator<<(std::ostream& os, const DragonCave& cave)
 {
     os<< "DragonCave dwellers:"<<std::endl<<std::endl;
+    int i=0;
+    int last=cave.GetDragons().size();
     for( auto dragon : cave.GetDragons())
     {
         if (dragon)
-        {os << *dragon<<std::endl;}
+        {os << *dragon;}
+        if (i!=last)
+        {os<<std::endl;}
+        i++;
     }
     return os;
 }
