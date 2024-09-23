@@ -116,4 +116,4 @@ class Dragon
  * \return The output stream given as one of the arguments.
  *
  */
-void operator<<(std::ostream& os, const Dragon& dragon);
+std::ostream& operator<<(std::ostream& os, const Dragon& dragon);

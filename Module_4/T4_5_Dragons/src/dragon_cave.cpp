@@ -28,10 +28,10 @@ DragonCave::~DragonCave()
         delete i;
     }
 }
-void operator<<(std::ostream& os, const DragonCave& cave)
+std::ostream& operator<<(std::ostream& os, const DragonCave& cave)
 {
     for( auto dragon : cave.GetDragons())
     {
-        os << *dragon << "\n";
+        os << *dragon<<std::endl;
     }
 }
