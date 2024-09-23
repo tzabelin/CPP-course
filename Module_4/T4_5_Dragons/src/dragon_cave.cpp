@@ -3,7 +3,7 @@
 // Define DragonCave's methods here
 const std::list<Dragon*>& DragonCave::GetDragons() const
 {
-    return &dragons_;
+    return dragons_;
 }
 void DragonCave::Accommodate(Dragon* dragon)
 {
@@ -23,6 +23,6 @@ DragonCave::~DragonCave()
 {
     for (auto i : dragons_) 
     {
-        ~i();
+        delete i;
     }
 }
