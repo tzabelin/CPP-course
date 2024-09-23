@@ -32,6 +32,8 @@ std::ostream& operator<<(std::ostream& os, const DragonCave& cave)
 {
     for( auto dragon : cave.GetDragons())
     {
-        os << *dragon<<std::endl;
+        if (dragon)
+        {os << *dragon<<std::endl;}
+        
     }
 }
