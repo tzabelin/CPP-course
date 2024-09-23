@@ -2,6 +2,7 @@
 #include <iostream>
 #include <list>
 #include <string>
+
 #include "dragon.hpp"
 /**
  * \brief The DragonCave class is a storage class for Dragons.
@@ -41,7 +42,7 @@
 class DragonCave
 {
     public:
-        DragonCave();
+        DragonCave(){}
         ~DragonCave();
         const std::list<Dragon*>& GetDragons() const;
         void Accommodate(Dragon* dragon);

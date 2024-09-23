@@ -7,6 +7,10 @@
 #include "fantasy_dragon.hpp"
 #include "magic_dragon.hpp"
 #include "dragon_cave.hpp"
+#include "dragon.cpp"
+#include "fantasy_dragon.cpp"
+#include "magic_dragon.cpp"
+#include "dragon_cave.cpp"
 
 std::list<Treasure> CreateRandomTreasures(size_t count) {
     std::list<Treasure> treasures;
