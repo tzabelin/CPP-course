@@ -40,7 +40,8 @@ end.
  */
 class MagicDragon : public Dragon
 {
-    MagicDragon(const std::string& n, size_t a, size_t s):Dragon(n, a, s){}
-    void Eat(std::list<Food>& food) override;
-    void Hoard(std::list<Treasure>& treasure) override;
+    public:
+        MagicDragon(const std::string& n, size_t a, size_t s):Dragon(n, a, s){}
+        void Eat(std::list<Food>& food) override;
+        void Hoard(std::list<Treasure>& treasure) override;
 };

@@ -1,7 +1,7 @@
 #include "dragon_cave.hpp"
 
 // Define DragonCave's methods here
-const (std::list<Dragon*>)& DragonCave::GetDragons() const
+const std::list<Dragon*>& DragonCave::GetDragons() const
 {
     return dragons_;
 }
@@ -24,5 +24,12 @@ DragonCave::~DragonCave()
     for (auto i : dragons_) 
     {
         delete i;
+    }
+}
+void operator<<(std::ostream& os, const DragonCave& cave)
+{
+    for( auto dragon : cave.GetDragons())
+    {
+        os << dragon << "\n";
     }
 }

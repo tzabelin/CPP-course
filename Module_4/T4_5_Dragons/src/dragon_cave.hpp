@@ -2,7 +2,7 @@
 #include <iostream>
 #include <list>
 #include <string>
-#include <dragon.hpp>
+#include "dragon.hpp"
 /**
  * \brief The DragonCave class is a storage class for Dragons.
  *
@@ -51,7 +51,7 @@ class DragonCave
 
         DragonCave(const DragonCave& other) = delete;
         DragonCave& operator=(const DragonCave& other) = delete;
-}
+};
 /**
  * \brief TODO: operator << overloads the << stream operator for printing
  * DragonCaves to a desired ostream.
@@ -78,3 +78,4 @@ class DragonCave
  * \return The output stream given as one of the arguments.
  *
  */
+void operator<<(std::ostream& os, const DragonCave& cave);
