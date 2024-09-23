@@ -20,13 +20,6 @@ void DragonCave::Evict(const std::string& name)
         }
     }
 }
-DragonCave::~DragonCave()
-{
-    for (auto i : dragons_) 
-    {
-        delete i;
-    }
-}
 void operator<<(std::ostream& os, const DragonCave& cave)
 {
     for( auto dragon : cave.GetDragons())
