@@ -8,7 +8,7 @@
         if (it->type == FoodType::People || it->type == FoodType::PeopleFood)
         {
             this->size_++;
-            std::cout << "Magic dragon ate: " << it->name << std::endl;
+            std::cout << "Fantasy dragon ate: " << it->name << std::endl;
             it=food.erase(it);
         }
         else  it++;
@@ -21,7 +21,7 @@
         if (it->type == TreasureType::Jewellery)
         {
             this->treasures_.push_back(*it);
-            std::cout << "Magic dragon received: " << it->name << std::endl;
+            std::cout << "Fantasy dragon received: " << it->name << std::endl;
             it=treasure.erase(it);
         }
         else  it++;
