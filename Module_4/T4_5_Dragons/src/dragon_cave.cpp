@@ -37,7 +37,7 @@ std::ostream& operator<<(std::ostream& os, const DragonCave& cave)
     {
         if (dragon)
         {os << *dragon;}
-        if (i!=last)
+        if (i!=last-1)
         {os<<std::endl;}
         i++;
     }
