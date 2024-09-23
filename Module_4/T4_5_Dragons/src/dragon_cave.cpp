@@ -11,11 +11,12 @@ void DragonCave::Accommodate(Dragon* dragon)
 }
 void DragonCave::Evict(const std::string& name)
 {
-    for(auto it = dragons_.begin(); it != dragons_.end(); it++)
+    for(auto it = dragons_.begin(); it != dragons_.end();)
     {
         if ((*it)->GetName() == name)
         {
-            dragons_.erase(it);
+            it=dragons_.erase(it);
+            break;
         }
     }
 }
