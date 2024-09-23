@@ -1,7 +1,7 @@
 #include "dragon_cave.hpp"
 
 // Define DragonCave's methods here
-const std::list<Dragon*>& DragonCave::GetDragons() const
+const (std::list<Dragon*>)& DragonCave::GetDragons() const
 {
     return dragons_;
 }
