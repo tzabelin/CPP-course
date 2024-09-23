@@ -13,7 +13,7 @@ void DragonCave::Evict(const std::string& name)
 {
     for(auto it = dragons_.begin(); it != dragons_.end(); it++)
     {
-        if (it->GetName() == name)
+        if ((*it)->GetName() == name)
         {
             dragons_.erase(it);
         }
