@@ -34,6 +34,6 @@ std::ostream& operator<<(std::ostream& os, const DragonCave& cave)
     {
         if (dragon)
         {os << *dragon;}
-        
     }
+    return os;
 }
