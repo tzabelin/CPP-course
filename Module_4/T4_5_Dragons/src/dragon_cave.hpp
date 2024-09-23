@@ -48,9 +48,9 @@ class DragonCave
         void Evict(const std::string& name);
     private:
         std::list<Dragon*> dragons_;
-        
-        DragonCave(const DragonCave& other);
-        DragonCave& operator=(const DragonCave& other);
+
+        DragonCave(const DragonCave& other) = delete;
+        DragonCave& operator=(const DragonCave& other) = delete;
 }
 /**
  * \brief TODO: operator << overloads the << stream operator for printing

@@ -19,3 +19,10 @@ void DragonCave::Evict(const std::string& name)
         }
     }
 }
+DragonCave::~DragonCave()
+{
+    for (auto i : dragons_) 
+    {
+        delete i;
+    }
+}
