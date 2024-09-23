@@ -11,4 +11,5 @@ std::ostream& operator<<(std::ostream& os, const Dragon& dragon)
     {
         os << it->name << std::endl;
     }
+    return os;
 };
