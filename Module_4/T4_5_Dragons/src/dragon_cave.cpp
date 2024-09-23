@@ -23,6 +23,6 @@ DragonCave::~DragonCave()
 {
     for (auto i : dragons_) 
     {
-        delete i;
+        ~i();
     }
 }
