@@ -16,7 +16,7 @@ void DragonCave::Evict(const std::string& name)
     {
         if ((*it)->GetName() == name)
         {
-            it=dragons_.erase(it);
+            dragons_.erase(it);
             break;
         }
     }
@@ -33,7 +33,7 @@ std::ostream& operator<<(std::ostream& os, const DragonCave& cave)
     for( auto dragon : cave.GetDragons())
     {
         if (dragon)
-        {os << *dragon<<std::endl;}
+        {os << *dragon;}
         
     }
 }
