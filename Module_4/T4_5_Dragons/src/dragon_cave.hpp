@@ -43,7 +43,7 @@ class DragonCave
 {
     public:
         DragonCave(){}
-        ~DragonCave();
+        ~DragonCave(){}
         const std::list<Dragon*>& GetDragons() const;
         void Accommodate(Dragon* dragon);
         void Evict(const std::string& name);
