@@ -79,7 +79,7 @@ class Dragon
 {
     public:
         Dragon(const std::string& n, size_t a, size_t s): name_(n), age_(a), size_(s) {}
-        ~Dragon(){}
+        virtual ~Dragon(){}
         const std::string& GetName() const;
         size_t GetAge() const;
         size_t GetSize() const;
