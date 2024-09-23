@@ -1,5 +1,8 @@
 #pragma once
-
+#include <iostream>
+#include <list>
+#include <string>
+#include <dragon.hpp>
 /**
  * \brief The DragonCave class is a storage class for Dragons.
  *
@@ -35,7 +38,20 @@
  */
 
 
-
+class DragonCave
+{
+    public:
+        DragonCave();
+        ~DragonCave();
+        const std::list<Dragon*>& GetDragons() const;
+        void Accommodate(Dragon* dragon);
+        void Evict(const std::string& name);
+    private:
+        std::list<Dragon*> dragons_;
+        
+        DragonCave(const DragonCave& other);
+        DragonCave& operator=(const DragonCave& other);
+}
 /**
  * \brief TODO: operator << overloads the << stream operator for printing
  * DragonCaves to a desired ostream.

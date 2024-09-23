@@ -75,7 +75,23 @@ struct Food
  *
  */
 
-
+class Dragon
+{
+    public:
+        Dragon(const std::string& n, size_t a, size_t s): name_(n), age_(a), size_(s) {}
+        ~Dragon(){}
+        const std::string& GetName() const;
+        size_t GetAge() const;
+        size_t GetSize() const;
+        const std::list<Treasure>& GetTreasures() const;
+        virtual void Eat(std::list<Food>& food) = 0;
+        virtual void Hoard(std::list<Treasure>& treasure) = 0;
+    protected:
+        std::string name_;
+        size_t age_;
+        size_t size_;
+        std::list<Treasure> treasures_;
+};
 /**
  * \brief TODO: operator << overloads the << stream operator for printing
  * Dragons to a desired ostream.
@@ -100,3 +116,4 @@ struct Food
  * \return The output stream given as one of the arguments.
  *
  */
+void operator<<(std::ostream& os, const Dragon& dragon);

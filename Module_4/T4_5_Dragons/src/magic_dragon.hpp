@@ -38,3 +38,9 @@ Magic dragon received: <Treasure's name>\n
  *  The treasures should be received in the order from the list's beginning to
 end.
  */
+class MagicDragon : public Dragon
+{
+    MagicDragon(const std::string& n, size_t a, size_t s):Dragon(n, a, s){}
+    void Eat(std::list<Food>& food) override;
+    void Hoard(std::list<Treasure>& treasure) override;
+};
