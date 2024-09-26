@@ -89,6 +89,7 @@ std::istream& operator>>(std::istream& is, Poly& p)
 {
     std::string input;
     is >> input;
+    std::reverse(input.begin(), input.end());
     std::stringstream ss(input);
     p = Poly();
     int sign = 1;
@@ -148,7 +149,7 @@ std::istream& operator>>(std::istream& is, Poly& p)
 std::ostream& operator<<(std::ostream& os, const Poly& p)
 {
     bool first_term = true;
-    for (auto it = p.begin(); it != p.end(); ++it)
+    for (auto it = p.end(); it != p.begin(); it--)
     {
         int exp = it->first;
         int mul = it->second;
