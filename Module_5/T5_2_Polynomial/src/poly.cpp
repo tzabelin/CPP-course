@@ -1,5 +1,5 @@
 #include "poly.hpp"
-
+#include <algorithm>
 #include <sstream>
 
 int Poly::operator[](int exp) const 
