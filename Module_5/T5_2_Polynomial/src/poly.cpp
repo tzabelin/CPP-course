@@ -77,7 +77,7 @@ bool operator==(const Poly& a, const Poly& b)
      return false;
 }
 
-bool operator==(const Poly& a, const Poly& b)
+bool operator!=(const Poly& a, const Poly& b)
 {
     if (a.end()->first != b.end()->first) 
     return true;
