@@ -173,7 +173,7 @@ std::ostream& operator<<(std::ostream& os, const Poly& p)
     }
         int exp = p.begin()->first;
         int mul = p.begin()->second;
-        if (first_term)
+        if (mul != 0)
         {
             if (mul < 0)
                 os << "-";
