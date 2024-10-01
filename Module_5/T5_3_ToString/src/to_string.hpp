@@ -34,7 +34,7 @@ template <typename T> std::string ToString(const T& container)
     std::stringstream ss;
     if constexpr(std::is_same_v<T, std::string>) 
     {
-        ss << container;
+        ss << "\"" << container << "\"";
     } else 
     {
         ss << "{ ";
@@ -46,8 +46,8 @@ template <typename T> std::string ToString(const T& container)
             }
             ss << *it;
         }
+        ss << " }";
     }
-    ss << " }";
     return ss.str();
 }
 
