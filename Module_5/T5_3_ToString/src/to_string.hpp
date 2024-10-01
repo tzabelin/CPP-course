@@ -1,6 +1,8 @@
 #ifndef AALTO_ELEC_CPP_TO_STRING_CLASS
 #define AALTO_ELEC_CPP_TO_STRING_CLASS
-
+#include <string>
+#include <sstream>
+#include <iterator>
 /* As an introduction to templates you will write and specialize a template function 
  * for formatting the contents of a container (string, vector, list, ...) into a string, 
  * assuming that the elements of the container are printable (with the << operator). 
@@ -27,6 +29,41 @@
  * This would allow printing containers that contain other containers, etc.
  */
 
+template <typename T> std::string ToString(const T& container) 
+{
+    std::stringstream ss;
+    ss << "{ ";
+    if constexpr(std::is_same_v<T, std::string>) 
+    {
+        ss << container;
+    } else 
+    {
+        for (auto it = container.begin(); it != container.end(); it++) 
+        {
+            if (it != container.begin()) 
+            {
+                ss << ", ";
+            }
+            ss << *it;
+        }
+    }
+    ss << " }";
+    return ss.str();
+}
 
-
+template <typename T> std::string ToString(T begin, T end) 
+{
+    std::stringstream ss;
+    ss << "{ ";
+    for (auto it = begin; it != end; it++) 
+    {
+        if (it != begin) 
+        {
+            ss << ", ";
+        }
+        ss << *it;
+    }
+    ss << " }";
+    return ss.str();
+}
 #endif

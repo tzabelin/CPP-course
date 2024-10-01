@@ -1,6 +1,7 @@
 #include "to_string.hpp"
 #include <iostream>
 #include <set>
+#include <string>
 
 int main() {
     std::string s = "foobar";
