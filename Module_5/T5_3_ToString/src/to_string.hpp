@@ -32,12 +32,12 @@
 template <typename T> std::string ToString(const T& container) 
 {
     std::stringstream ss;
-    ss << "{ ";
     if constexpr(std::is_same_v<T, std::string>) 
     {
         ss << container;
     } else 
     {
+        ss << "{ ";
         for (auto it = container.begin(); it != container.end(); it++) 
         {
             if (it != container.begin()) 
