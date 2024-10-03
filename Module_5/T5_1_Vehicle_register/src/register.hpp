@@ -83,7 +83,7 @@ public:
              std::string model,
              double wingspan,
              unsigned int cruise_speed): Vehicle(register_number, owner), model_(model), wingspan_(wingspan), cruise_speed_(cruise_speed) {}
-
+    ~Aircraft() override;
     /**
      * @brief Writes the vehicle to the stream given as a parameter in a
      * predefined serialized format.
@@ -155,7 +155,7 @@ public:
          std::string name,
          double draft,
          double power) : Vehicle(register_number, owner), name_(name), draft_(draft), power_(power) {}
-
+    ~Boat() override;
     /**
      * @brief Writes the vehicle to the stream given as a parameter in a
      * predefined serialized format.
