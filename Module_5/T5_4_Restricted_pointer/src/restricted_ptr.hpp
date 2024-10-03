@@ -21,5 +21,59 @@
     the copier should set it's pointer to nullptr and reference count to 1.
     NOTE: GetPointer, GetData and GetRefCount are needed for the tests to run
 */
-
+template <typename T> class RestrictedPtr
+{
+    public:
+        RestrictedPtr() : ptr_(nullptr), ref_counter_(new int(0)){}
+        RestrictedPtr(T *ptr): ptr_(ptr), ref_counter_(new int(1)){}
+        RestrictedPtr(const RestrictedPtr<T> &a)
+        {
+            if (a.GetRefCount() == 3)
+            {
+                ptr_ = nullptr;
+                ref_counter_ = new int(1);
+                return;
+            }
+            ptr_ = a.ptr_;
+            ref_counter_ = a.ref_counter_;
+            (*ref_counter_)++;
+            return;
+        }
+        ~RestrictedPtr()
+        {
+            (*ref_counter_)--;
+            if (ref_counter_ == 0)
+            {
+                delete ptr_;
+            }
+        }
+        RestrictedPtr<T>& operator=(const RestrictedPtr &a)
+        {
+            if (a.GetRefCount() == 3)
+            {
+                ptr_ = nullptr;
+                ref_counter_ = new int(1);
+                return *this;
+            }
+            ptr_ = a.ptr_;
+            ref_counter_ = a.ref_counter_;
+            (*ref_counter_)++;
+            return *this;
+        }
+        T &GetData()
+        {
+            return *ptr_;
+        }
+        T *GetPointer() const
+        {
+            return ptr_;
+        }
+        int GetRefCount() const
+        {
+            return *ref_counter_;
+        }
+    private:
+        T *ptr_;
+        int *ref_counter_;
+};
 #endif
