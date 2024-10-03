@@ -1,233 +1,27 @@
-#include <iostream>
+#ifndef AALTO_ELEC_CPP_REGISTER_CLASS
+#define AALTO_ELEC_CPP_REGISTER_CLASS
+
 #include <string>
 #include <vector>
-#include <fstream>
-#include <sstream>
-//#ifndef AALTO_ELEC_CPP_REGISTER_CLASS
-//#define AALTO_ELEC_CPP_REGISTER_CLASS
 
-class Vehicle {
-public:
-    /**
-     * @brief Construct a new Vehicle object
-     * 
-     * @param register_number registration of the vehicle as a std::string
-     * @param owner name of the owner as a std::string
-     */
-    explicit Vehicle(std::string register_number,
-                     std::string owner);
-
-    /**
-     * @brief Destroy the Vehicle object.
-     */
-    virtual ~Vehicle() {};
-
-    /**
-     * @brief Get the register number of the vehicle
-     * 
-     * @return registration of the vehicle as a std::string 
-     */
-    std::string GetRegisterNumber() const;
-
-    /**
-     * @brief Get the owner of the vehicle
-     * 
-     * @return name of the owner as a std::string 
-     */
-    std::string GetOwner() const;
-
-    /**
-     * @brief Writes the vehicle to the stream given as a parameter in the
-     * serialized format for that vehicle. Note: this is a pure virtual method.
-     * 
-     * @param stream reference to the desired ostream 
-     */
-    virtual void Write(std::ostream& stream) = 0;
-
-    /**
-     * @brief Writes the vehicle to the standard output in the serialized format
-     * for that vehicle. Note: this is a pure virtual method.
-     */
-    virtual void Print() = 0;
-private:
-    std::string register_number_;
-    std::string owner_;
-};
-std::string Vehicle::GetRegisterNumber() const
-{
-    return this->register_number_;
-}
-std::string Vehicle::GetOwner() const
-{
-    return this->owner_;
-}
-Vehicle::Vehicle(std::string register_number, std::string owner) : register_number_(register_number), owner_(owner) {}
+#include "vehicle.hpp"
 
 /**
- * @brief Inherits class Vehicle and implements functionalities required for
- * handling aircraft.
+ * @brief Class for storing and interacting with Vehicle objects.
  */
-class Aircraft : public Vehicle {
-public:
-    /**
-     * @brief Construct a new Aircraft object
-     * 
-     * @param register_number registration of the vehicle as a std::string
-     * @param owner name of the owner as a std::string
-     * @param model name of the vehicle model as a std::string
-     * @param wingspan wingspan of the aircraft as a double
-     * @param cruise_speed cruise speed of the aircraft as an unsigned integer
-     */
-    Aircraft(std::string register_number,
-             std::string owner,
-             std::string model,
-             double wingspan,
-             unsigned int cruise_speed): Vehicle(register_number, owner), model_(model), wingspan_(wingspan), cruise_speed_(cruise_speed) {}
-    ~Aircraft() override {}
-    /**
-     * @brief Writes the vehicle to the stream given as a parameter in a
-     * predefined serialized format.
-     * 
-     * Format for an aircraft:
-     * A;<register number>;<owner>;<model>;<wingspan>;<cruise_speed>\n
-     * 
-     * @param stream reference to the desired ostream 
-     */
-    void Write(std::ostream& stream) override
-{
-    stream<<"A;"<<this->GetRegisterNumber()<<";"<<this->GetOwner()<<";"<<this->model_<<";"<<this->wingspan_<<";"<<this->cruise_speed_<<std::endl;
-}
-    
-    /**
-     * @brief Writes the vehicle to the standard output in the given serialized
-     * format (see method Write for details).
-     */
-    void Print() override
-{
-    this->Write(std::cout);
-}
-
-    /**
-     * @brief Reads an Aircraft object from a given istream.
-     * 
-     * Assumes that the vehicle is stored in a predefined serialized format (see
-     * method Write for details). Reading is started immediately from the
-     * current position of the stream.
-     * 
-     * @param stream reference to the desired istream 
-     * @return a Aircraft* pointer refering to the newly created object if the
-     * input can be read successfully
-     * @return a NULL pointer otherwise
-     */
-    static Aircraft* Read(std::istream& stream)
-{
-    std::string prefix, register_number, owner, model;
-    double wingspan, cruise_speed;
-    if (std::getline(stream, prefix, ';') && std::getline(stream, register_number, ';') && std::getline(stream, owner, ';') &&std::getline(stream, model, ';') && stream >> wingspan >> std::ws && stream.get() == ';' && stream >> cruise_speed && prefix == "A")
-    {
-        return new Aircraft(register_number, owner, model, wingspan, cruise_speed);
-    }
-    return NULL;
-}
-
-private:
-    std::string model_;
-    double wingspan_;
-    unsigned int cruise_speed_;
-};
-/**
- * @brief Inherits class Vehicle and implements functionalities required for
- * handling boats.
- */
-class Boat : public Vehicle
-{
-public:
-    /**
-     * @brief Construct a new Boat object
-     * 
-     * @param register_number registration of the vehicle as a std::string
-     * @param owner name of the owner as a std::string
-     * @param name  name of the vehicle as a std::string
-     * @param draft draft of the boat as a double
-     * @param power power of the boat as a double
-     */
-    Boat(std::string register_number, std::string owner,
-         std::string name,
-         double draft,
-         double power) : Vehicle(register_number, owner), name_(name), draft_(draft), power_(power) {}
-    ~Boat() override{}
-    /**
-     * @brief Writes the vehicle to the stream given as a parameter in a
-     * predefined serialized format.
-     * 
-     * Format for a boat:
-     * B;<register number>;<owner>;<name>;<draft>;<power>\n
-     * 
-     * @param stream reference to the desired ostream 
-     */
-    void Write(std::ostream &stream) override
-{
-    stream<<"B;"<<this->GetRegisterNumber()<<";"<<this->GetOwner()<<";"<<this->name_<<";"<<this->draft_<<";"<<this->power_<<std::endl;
-}
-
-    /**
-     * @brief Writes the vehicle to the standard output in the given serialized
-     * format (see method Write for details).
-     */
-    void Print() override {
-    this->Write(std::cout);
-}
-
-    /**
-     * @brief Reads a Boat object from a given istream.
-     * 
-     * Assumes that the vehicle is stored in a predefined serialized format (see
-     * method Write for details). Reading is started immediately from the
-     * current position of the stream.
-     * 
-     * @param stream reference to the desired istream 
-     * @return a Boat* pointer refering to the newly created object if the input
-     * can be read successfully. Otherwise, a NULL pointer.
-     */
-    static Boat *Read(std::istream& stream)
-{
-    std::string prefix, register_number, owner, name;
-    double draft, power;
-    if (std::getline(stream, prefix, ';') && std::getline(stream, register_number, ';') && std::getline(stream, owner, ';') &&std::getline(stream, name, ';') && stream >> draft >> std::ws && stream.get() == ';' && stream >> power && prefix == "B")
-    {
-        return new Boat(register_number, owner, name, draft, power);
-    }
-    return NULL;
-}
-
-private:
-    std::string name_;
-    double draft_;
-    double power_;
-};
 class Register {
 public:
-Register() : vehicles_(){}
     /**
      * @brief Destroy the Register object
      */
-    ~Register()
-    {
-    for (auto vehicle : vehicles_) 
-    {
-        delete vehicle;
-    }
-}
+    ~Register() {}
     
     /**
      * @brief Adds a new vehicle to the Vehicle* vector vehicles_
      * 
      * @param v Vehicle pointer to be added
      */
-    void Add(Vehicle* v)
-{
-    this->vehicles_.push_back(v);
-}
+    void Add(Vehicle* v) {}
 
     /**
      * @brief Saves the vehicles to the file named by the parameter with each
@@ -235,14 +29,7 @@ Register() : vehicles_(){}
      * 
      * @param filename Reference to the desired filename as std::string 
      */
-    void Save(const std::string& filename) const
-    {
-    std::ofstream stream(filename);
-    for(auto vehicle : this->vehicles_)
-    {
-        vehicle->Write(stream);
-    }
-}
+    void Save(const std::string& filename) const {}
 
     /**
      * @brief Reads a vehicle from the stream given as a parameter assuming a
@@ -255,10 +42,7 @@ Register() : vehicles_(){}
      * @return true if a vehicle was added
      * @return false otherwise
      */
-    bool ReadLine(std::istream& stream)
-    {
-        return false;
-    }
+    bool ReadLine(std::istream& stream) {}
    
     /**
      * @brief Reads all vehicles from a file and adds them to the register.
@@ -270,34 +54,23 @@ Register() : vehicles_(){}
      * @return the number of vehicles added as an integer
      * @return -1 if opening the file fails
      */
-    int Load(const std::string& filename)
-    {
-        return 1;
-    }
+    int Load(const std::string& filename) {return 0;}
 
     /**
      * @brief Prints all the vehicles in the register to the standard output
      * each on a different line in the serialized format.
      */
-    void Print(){
-    for(auto vehicle : this->vehicles_)
-    {
-        vehicle->Print();
-    }
-}
+    void Print() {}
 
     /**
      * @brief Get the number of vehicles in the register.
      * 
      * @return the number of vehicles in the register as a size_t integer. 
      */
-    size_t Size() const{
-    return this->vehicles_.size();
-}
+    size_t Size() const {return 0;}
 
 private:
     std::vector<Vehicle*> vehicles_;
 };
 
-
-//#endif
+#endif

@@ -1,4 +1,9 @@
+#include <iostream>
+
+#include "aircraft.hpp"
+#include "boat.hpp"
 #include "register.hpp"
+
 int main(void) {
   Register r;
   r.Load("src/readtester.txt");
