@@ -37,13 +37,13 @@ public:
      * 
      * @param stream reference to the desired ostream 
      */
-    void Write(std::ostream& stream) {};
+    void Write(std::ostream& stream) override {};
     
     /**
      * @brief Writes the vehicle to the standard output in the given serialized
      * format (see method Write for details).
      */
-    void Print() {};
+    void Print()override {};
 
     /**
      * @brief Reads an Aircraft object from a given istream.
