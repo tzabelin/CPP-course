@@ -3,8 +3,8 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#ifndef AALTO_ELEC_CPP_REGISTER_CLASS
-#define AALTO_ELEC_CPP_REGISTER_CLASS
+//#ifndef AALTO_ELEC_CPP_REGISTER_CLASS
+//#define AALTO_ELEC_CPP_REGISTER_CLASS
 
 class Vehicle {
 public:
@@ -351,4 +351,4 @@ size_t Register::Size() const
 {
     return this->vehicles_.size();
 }
-#endif
+//#endif
