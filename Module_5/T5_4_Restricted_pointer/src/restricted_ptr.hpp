@@ -30,7 +30,8 @@ template <typename T> class RestrictedPtr
         {
             if (a.GetRefCount() == 3)
             {
-                RestrictedPtr();
+                ptr_ = nullptr;
+                ref_counter_ = new int(1);
                 return;
             }
             ptr_ = a.ptr_;
@@ -51,7 +52,8 @@ template <typename T> class RestrictedPtr
         {
             if (a.GetRefCount() == 3)
             {
-                RestrictedPtr();
+                ptr_ = nullptr;
+                ref_counter_ = new int(1);
                 return *this;
             }
             delete ptr_;
