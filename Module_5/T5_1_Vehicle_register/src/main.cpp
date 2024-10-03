@@ -1,8 +1,8 @@
 #include <iostream>
 
+#include "register.hpp"
 #include "aircraft.hpp"
 #include "boat.hpp"
-#include "register.hpp"
 
 int main(void) {
   Register r;
