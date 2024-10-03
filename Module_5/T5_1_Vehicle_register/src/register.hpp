@@ -224,7 +224,10 @@ Register() : vehicles_(){}
      * 
      * @param v Vehicle pointer to be added
      */
-    void Add(Vehicle* v);
+    void Add(Vehicle* v)
+{
+    this->vehicles_.push_back(v);
+}
 
     /**
      * @brief Saves the vehicles to the file named by the parameter with each
@@ -232,7 +235,14 @@ Register() : vehicles_(){}
      * 
      * @param filename Reference to the desired filename as std::string 
      */
-    void Save(const std::string& filename) const;
+    void Save(const std::string& filename) const
+    {
+    std::ofstream stream(filename);
+    for(auto vehicle : this->vehicles_)
+    {
+        vehicle->Write(stream);
+    }
+}
 
     /**
      * @brief Reads a vehicle from the stream given as a parameter assuming a
@@ -245,50 +255,7 @@ Register() : vehicles_(){}
      * @return true if a vehicle was added
      * @return false otherwise
      */
-    bool ReadLine(std::istream& stream);
-   
-    /**
-     * @brief Reads all vehicles from a file and adds them to the register.
-     * 
-     * Each vehicle is on a different line. On an error the line is discarded
-     * and reading is continued from the next line.
-     * 
-     * @param filename 
-     * @return the number of vehicles added as an integer
-     * @return -1 if opening the file fails
-     */
-    int Load(const std::string& filename);
-
-    /**
-     * @brief Prints all the vehicles in the register to the standard output
-     * each on a different line in the serialized format.
-     */
-    void Print();
-
-    /**
-     * @brief Get the number of vehicles in the register.
-     * 
-     * @return the number of vehicles in the register as a size_t integer. 
-     */
-    size_t Size() const;
-
-private:
-    std::vector<Vehicle*> vehicles_;
-};
-void Register::Add(Vehicle* v)
-{
-    this->vehicles_.push_back(v);
-}
-void Register::Save(const std::string& filename) const
-{
-    std::ofstream stream(filename);
-    for(auto vehicle : this->vehicles_)
-    {
-        vehicle->Write(stream);
-    }
-}
-bool Register::ReadLine(std::istream& stream)
-{
+    bool ReadLine(std::istream& stream){
     std::string line;
     if (!std::getline(stream, line))
         return false;
@@ -321,9 +288,18 @@ bool Register::ReadLine(std::istream& stream)
         return false;
     }
 }
-
-int Register::Load(const std::string& filename)
-{
+   
+    /**
+     * @brief Reads all vehicles from a file and adds them to the register.
+     * 
+     * Each vehicle is on a different line. On an error the line is discarded
+     * and reading is continued from the next line.
+     * 
+     * @param filename 
+     * @return the number of vehicles added as an integer
+     * @return -1 if opening the file fails
+     */
+    int Load(const std::string& filename){
     std::ifstream stream(filename);
     int vehicles_added = 0;
     while (stream)
@@ -337,16 +313,29 @@ int Register::Load(const std::string& filename)
     return vehicles_added;
 }
 
-void Register::Print()
-{
+    /**
+     * @brief Prints all the vehicles in the register to the standard output
+     * each on a different line in the serialized format.
+     */
+    void Print(){
     for(auto vehicle : this->vehicles_)
     {
         vehicle->Print();
     }
 }
 
-size_t Register::Size() const
-{
+    /**
+     * @brief Get the number of vehicles in the register.
+     * 
+     * @return the number of vehicles in the register as a size_t integer. 
+     */
+    size_t Size() const{
     return this->vehicles_.size();
 }
+
+private:
+    std::vector<Vehicle*> vehicles_;
+};
+
+
 //#endif
