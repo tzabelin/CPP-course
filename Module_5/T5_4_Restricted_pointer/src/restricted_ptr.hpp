@@ -24,7 +24,7 @@
 template <typename T> class RestrictedPtr
 {
     public:
-        RestrictedPtr() : ptr_(nullptr), ref_counter_(new int(0)){}
+        RestrictedPtr() : ptr_(nullptr), ref_counter_(new int(1)){}
         RestrictedPtr(T *ptr): ptr_(ptr), ref_counter_(new int(1)){}
         RestrictedPtr(const RestrictedPtr<T> &a)
         {
@@ -35,7 +35,6 @@ template <typename T> class RestrictedPtr
                 return;
             }
             ptr_ = a.ptr_;
-            delete ref_counter_;
             ref_counter_ = a.ref_counter_;
             (*ref_counter_)++;
             return;
