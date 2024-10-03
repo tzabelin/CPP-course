@@ -3,11 +3,8 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include "aircraft.hpp"
-#include "boat.hpp"
 #ifndef AALTO_ELEC_CPP_REGISTER_CLASS
 #define AALTO_ELEC_CPP_REGISTER_CLASS
-#include <iostream>
 
 class Vehicle {
 public:
