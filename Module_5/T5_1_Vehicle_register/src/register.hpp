@@ -207,10 +207,17 @@ private:
 };
 class Register {
 public:
+Register() : vehicles_(){}
     /**
      * @brief Destroy the Register object
      */
-    ~Register();
+    ~Register()
+    {
+    for (auto vehicle : vehicles_) 
+    {
+        delete vehicle;
+    }
+}
     
     /**
      * @brief Adds a new vehicle to the Vehicle* vector vehicles_
@@ -280,15 +287,6 @@ void Register::Save(const std::string& filename) const
         vehicle->Write(stream);
     }
 }
-
-Register::~Register() 
-{
-    for (auto vehicle : vehicles_) 
-    {
-        delete vehicle;
-    }
-}
-
 bool Register::ReadLine(std::istream& stream)
 {
     std::string line;
