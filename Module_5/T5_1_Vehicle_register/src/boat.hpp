@@ -1,9 +1,8 @@
-#ifndef AALTO_ELEC_CPP_BOAT_CLASS
-#define AALTO_ELEC_CPP_BOAT_CLASS
-
+//#ifndef AALTO_ELEC_CPP_BOAT_CLASS
+//#define AALTO_ELEC_CPP_BOAT_CLASS
+#pragma once
 #include <iostream>
 #include <string>
-
 #include "vehicle.hpp"
 
 /**
@@ -80,4 +79,4 @@ Boat* Boat::Read(std::istream& stream)
     }
     return NULL;
 }
-#endif
+//#endif

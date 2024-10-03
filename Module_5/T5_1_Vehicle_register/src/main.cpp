@@ -3,7 +3,7 @@
 #include "register.hpp"
 #include "aircraft.hpp"
 #include "boat.hpp"
-
+#pragma once
 int main(void) {
   Register r;
   r.Load("src/readtester.txt");

@@ -1,6 +1,6 @@
-#ifndef AALTO_ELEC_CPP_VEHICLE_CLASS
-#define AALTO_ELEC_CPP_VEHICLE_CLASS
-
+//#ifndef AALTO_ELEC_CPP_VEHICLE_CLASS
+//#define AALTO_ELEC_CPP_VEHICLE_CLASS
+#pragma once
 #include <string>
 
 /**
@@ -62,4 +62,4 @@ std::string Vehicle::GetOwner() const
     return this->owner_;
 }
 Vehicle::Vehicle(std::string register_number, std::string owner) : register_number_(register_number), owner_(owner) {}
-#endif
+//#endif
