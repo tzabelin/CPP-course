@@ -45,6 +45,7 @@ template <typename T> class RestrictedPtr
             if (ref_counter_ == 0)
             {
                 delete ptr_;
+                delete ref_counter_;
             }
         }
         RestrictedPtr<T>& operator=(const RestrictedPtr &a)
