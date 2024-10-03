@@ -96,13 +96,19 @@ public:
      * 
      * @param stream reference to the desired ostream 
      */
-    void Write(std::ostream& stream);
+    void Write(std::ostream& stream) override
+{
+    stream<<"A;"<<this->GetRegisterNumber()<<";"<<this->GetOwner()<<";"<<this->model_<<";"<<this->wingspan_<<";"<<this->cruise_speed_<<std::endl;
+}
     
     /**
      * @brief Writes the vehicle to the standard output in the given serialized
      * format (see method Write for details).
      */
-    void Print();
+    void Print() override
+{
+    this->Write(std::cout);
+}
 
     /**
      * @brief Reads an Aircraft object from a given istream.
@@ -116,22 +122,7 @@ public:
      * input can be read successfully
      * @return a NULL pointer otherwise
      */
-    static Aircraft* Read(std::istream& stream);
-
-private:
-    std::string model_;
-    double wingspan_;
-    unsigned int cruise_speed_;
-};
-void Aircraft::Write(std::ostream& stream)
-{
-    stream<<"A;"<<this->GetRegisterNumber()<<";"<<this->GetOwner()<<";"<<this->model_<<";"<<this->wingspan_<<";"<<this->cruise_speed_<<std::endl;
-}
-void Aircraft::Print()
-{
-    this->Write(std::cout);
-}
-Aircraft* Aircraft::Read(std::istream& stream)
+    static Aircraft* Read(std::istream& stream)
 {
     std::string prefix, register_number, owner, model;
     double wingspan, cruise_speed;
@@ -141,6 +132,12 @@ Aircraft* Aircraft::Read(std::istream& stream)
     }
     return NULL;
 }
+
+private:
+    std::string model_;
+    double wingspan_;
+    unsigned int cruise_speed_;
+};
 /**
  * @brief Inherits class Vehicle and implements functionalities required for
  * handling boats.
@@ -171,13 +168,18 @@ public:
      * 
      * @param stream reference to the desired ostream 
      */
-    void Write(std::ostream &stream);
+    void Write(std::ostream &stream) override
+{
+    stream<<"B;"<<this->GetRegisterNumber()<<";"<<this->GetOwner()<<";"<<this->name_<<";"<<this->draft_<<";"<<this->power_<<std::endl;
+}
 
     /**
      * @brief Writes the vehicle to the standard output in the given serialized
      * format (see method Write for details).
      */
-    void Print();
+    void Print() override {
+    this->Write(std::cout);
+}
 
     /**
      * @brief Reads a Boat object from a given istream.
@@ -190,22 +192,7 @@ public:
      * @return a Boat* pointer refering to the newly created object if the input
      * can be read successfully. Otherwise, a NULL pointer.
      */
-    static Boat *Read(std::istream &stream);
-
-private:
-    std::string name_;
-    double draft_;
-    double power_;
-};
-void Boat::Write(std::ostream& stream)
-{
-    stream<<"B;"<<this->GetRegisterNumber()<<";"<<this->GetOwner()<<";"<<this->name_<<";"<<this->draft_<<";"<<this->power_<<std::endl;
-}
-void Boat::Print()
-{
-    this->Write(std::cout);
-}
-Boat* Boat::Read(std::istream& stream)
+    static Boat *Read(std::istream& stream)
 {
     std::string prefix, register_number, owner, name;
     double draft, power;
@@ -215,6 +202,12 @@ Boat* Boat::Read(std::istream& stream)
     }
     return NULL;
 }
+
+private:
+    std::string name_;
+    double draft_;
+    double power_;
+};
 class Register {
 public:
     /**
