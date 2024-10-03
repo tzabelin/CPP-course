@@ -56,8 +56,8 @@ template <typename T> class RestrictedPtr
                 ref_counter_ = new int(1);
                 return *this;
             }
-            delete ptr_;
-            delete ref_counter_;
+            //delete ptr_;
+            //delete ref_counter_;
             ptr_ = a.ptr_;
             ref_counter_ = a.ref_counter_;
             (*ref_counter_)++;
