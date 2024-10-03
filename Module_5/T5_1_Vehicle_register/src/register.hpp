@@ -255,39 +255,10 @@ Register() : vehicles_(){}
      * @return true if a vehicle was added
      * @return false otherwise
      */
-    bool ReadLine(std::istream& stream){
-    std::string line;
-    if (!std::getline(stream, line))
-        return false;
-    std::istringstream str(line);
-    char type;
-    if (!(str >> type))
-        return false;
-    if (str.get() != ';')
-        return false;
-    Vehicle* vehicle = nullptr;
-    if (type == 'A')
-    {
-        vehicle = Aircraft::Read(str);
-    }
-    else if (type == 'B')
-    {
-        vehicle = Boat::Read(str);
-    }
-    else
+    bool ReadLine(std::istream& stream)
     {
         return false;
     }
-    if (vehicle != nullptr)
-    {
-        Add(vehicle);
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
    
     /**
      * @brief Reads all vehicles from a file and adds them to the register.
@@ -299,19 +270,10 @@ Register() : vehicles_(){}
      * @return the number of vehicles added as an integer
      * @return -1 if opening the file fails
      */
-    int Load(const std::string& filename){
-    std::ifstream stream(filename);
-    int vehicles_added = 0;
-    while (stream)
+    int Load(const std::string& filename)
     {
-        bool result = ReadLine(stream);
-        if (stream.eof())
-            break;
-        if (result)
-            vehicles_added++;
+        return 1;
     }
-    return vehicles_added;
-}
 
     /**
      * @brief Prints all the vehicles in the register to the standard output
