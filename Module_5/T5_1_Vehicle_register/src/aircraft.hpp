@@ -25,7 +25,7 @@ public:
              std::string owner,
              std::string model,
              double wingspan,
-             unsigned int cruise_speed);
+             unsigned int cruise_speed): Vehicle(register_number, owner), model_(model), wingspan_(wingspan), cruise_speed_(cruise_speed) {}
 
     /**
      * @brief Writes the vehicle to the stream given as a parameter in a

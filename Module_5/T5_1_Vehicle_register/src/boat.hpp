@@ -22,11 +22,10 @@ public:
      * @param draft draft of the boat as a double
      * @param power power of the boat as a double
      */
-    Boat(std::string register_number,
-         std::string owner,
+    Boat(std::string register_number, std::string owner,
          std::string name,
          double draft,
-         double power);
+         double power) : Vehicle(register_number, owner), name_(name), draft_(draft), power_(power) {}
 
     /**
      * @brief Writes the vehicle to the stream given as a parameter in a
