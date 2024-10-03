@@ -1,10 +1,4 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <fstream>
-#include <sstream>
 #include "register.hpp"
-
 int main(void) {
   Register r;
   r.Load("src/readtester.txt");
