@@ -1,5 +1,9 @@
 /* Add include guards here */
 
+#ifndef AALTO_ELEC_CPP_TRIPLE_CLASS
+#define AALTO_ELEC_CPP_TRIPLE_CLASS
+#include <iostream>
+#include <type_traits>
 /**
  * @brief: The template class Triple is a container class, which holds three values.
  * All of the values can be of different type. All of the values should be
@@ -16,7 +20,12 @@
  * The Triple class should also support the copy constructor, and assignment
  * operations.
  */
- 
+ template <typename T1, typename T2, typename T3>
+class Triple 
+{
+    public:
+    Triple();
+    Triple(const T1& first, const T2& second, const T3& third):first_(first), second_(second), third_(third) {}
 
 /* Public member functions:
  * ------------------------
@@ -36,7 +45,36 @@
  * The function takes no parameters.
  * The function returns a const reference to the third value of the triple.
  */
+    const T1& First() const 
+    {
+        return first_;
+    }
 
+    const T2& Second() const 
+    {
+        return second_;
+    }
+
+    const T3& Third() const 
+    {
+        return third_;
+    }
+
+    bool operator==(const Triple& other) const 
+    {
+        return first_ == other.first_ && second_ == other.second_ && third_ == other.third_;
+    }
+
+    bool operator!=(const Triple& other) const 
+    {
+        return !(*this == other);
+    }
+    
+    private:
+    T1 first_;
+    T2 second_;
+    T3 third_;
+};
 /* Non-member functions:
  * ---------------------
  * Function: IsHomogenous
@@ -47,7 +85,21 @@
  * Hint: specialisation can help you here.
  */
 
+template <typename T1, typename T2, typename T3> bool IsHomogenous(const Triple<T1, T2, T3>&) 
+{
+    return false;
+}
 
+template <typename T> bool IsHomogenous(const Triple<T, T, T>&) 
+{
+    return true;
+}
+
+template <typename T1, typename T2, typename T3> std::ostream& operator<<(std::ostream& os, const Triple<T1, T2, T3>& triple) 
+{
+    os << "[" << triple.First() << ", " << triple.Second() << ", " << triple.Third() << "]";
+    return os;
+}
 /* Operator overloads:
  * -------------------
  * The triple class should support the following operators:
@@ -74,3 +126,4 @@
 
 /* Remember the endif here to close the header guards */
 
+#endif
