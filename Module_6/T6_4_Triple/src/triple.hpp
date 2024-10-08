@@ -3,7 +3,6 @@
 #ifndef AALTO_ELEC_CPP_TRIPLE_CLASS
 #define AALTO_ELEC_CPP_TRIPLE_CLASS
 #include <iostream>
-#include <type_traits>
 /**
  * @brief: The template class Triple is a container class, which holds three values.
  * All of the values can be of different type. All of the values should be
