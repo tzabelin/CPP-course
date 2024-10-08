@@ -52,7 +52,7 @@ class TranscriptRegistry
     public:
     void Add(const Transcript& t);
     void RemoveById(const std::string& id);
-    std::list<Transcript>::iterator FindTranscript(const std::string& id) const;
+    std::list<Transcript>::const_iterator FindTranscript(const std::string& id) const;
     std::list<std::pair<std::string, size_t>> FindCourseResults(const std::string& course) const;
     const std::list<Transcript> GetTranscripts() const;
     private:
@@ -68,7 +68,7 @@ void TranscriptRegistry::RemoveById(const std::string& student_id)
     transcripts_.remove_if([&student_id](const Transcript& transcript){return transcript.student_id==student_id;});
 }
 
-std::list<Transcript>::iterator TranscriptRegistry::FindTranscript(const std::string& student_id) const
+std::list<Transcript>::const_iterator TranscriptRegistry::FindTranscript(const std::string& student_id) const
 {
     return std::find_if(transcripts_.begin(), transcripts_.end(), [&student_id](const Transcript& transcript){return transcript.student_id==student_id;});
 }
