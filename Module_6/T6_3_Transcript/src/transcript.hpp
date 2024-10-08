@@ -4,6 +4,7 @@
 #include <string>
 #include <list>
 #include <utility>
+#include <algorithm>
 
 /**
  * @brief structured type for storing transcripts
@@ -46,5 +47,50 @@ struct Transcript {
  * Hint: due to the GetTranscripts function it would be beneficial to use e.g. list or
  * vector to store the transcripts.
 */
+class TranscriptRegistry 
+{
+    public:
+    void Add(const Transcript& t);
+    void RemoveById(const std::string& id);
+    std::list<Transcript>::iterator FindTranscript(const std::string& id);
+    std::list<std::pair<std::string, size_t>> FindCourseResults(const std::string& course) const;
+    std::list<Transcript> GetTranscripts() const;
+    private:
+    std::list<Transcript> transcripts_;
+};
+void TranscriptRegistry::Add(const Transcript& transcript)
+{
+    transcripts_.push_back(transcript);
+}
 
+void TranscriptRegistry::RemoveById(const std::string& student_id)
+{
+    transcripts_.remove_if([&student_id](const Transcript& transcript){return transcript.student_id==student_id;});
+}
+
+std::list<Transcript>::iterator TranscriptRegistry::FindTranscript(const std::string& student_id)
+{
+    return std::find_if(transcripts_.begin(), transcripts_.end(), [&student_id](const Transcript& transcript){return transcript.student_id==student_id;});
+}
+
+std::list<std::pair<std::string, size_t>> TranscriptRegistry::FindCourseResults(const std::string& course_name) const
+{
+    std::list<std::pair<std::string, size_t>> results;
+    for(const auto& transcript:transcripts_)
+    {
+        for(const auto& grade_pair:transcript.grades)
+        {
+            if (grade_pair.first == course_name)
+            {
+                results.emplace_back(transcript.student_id, grade_pair.second);
+            }
+        }
+    }
+    return results;
+}
+
+std::list<Transcript> TranscriptRegistry::GetTranscripts() const
+{
+    return transcripts_;
+}
 #endif
