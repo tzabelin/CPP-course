@@ -52,11 +52,17 @@ namespace MyMemoryAllocator
          *
          * \param bounded_ptr the source object to be copied into this one
          */
-        BoundedPtr(const BoundedPtr<T> &bounded_ptr) : raw_pointer_(bounded_ptr.raw_pointer_), ref_count_(bounded_ptr.ref_count_), use_(bounded_ptr.use_) 
+        BoundedPtr(const BoundedPtr<T> &bounded_ptr) : raw_pointer_(nullptr), ref_count_(nullptr), use_(bounded_ptr.use_)
         {
             if (!IncrementRefCount()) 
             {
                 throw BoundedCopyException(use_);
+            }
+            else
+            {
+                raw_pointer_ = bounded_ptr.raw_pointer_;
+                ref_count_ = bounded_ptr.ref_count_;
+                (*ref_count_)++;
             }
         }
 
@@ -80,13 +86,13 @@ namespace MyMemoryAllocator
                     delete raw_pointer_;
                     delete ref_count_;
                 }
-            raw_pointer_ = bounded_ptr.raw_pointer_;
-            ref_count_ = bounded_ptr.ref_count_;
-            use_ = bounded_ptr.use_;
-            if (!IncrementRefCount()) 
-            {
-                throw BoundedCopyException(use_);
-            }
+                raw_pointer_ = bounded_ptr.raw_pointer_;
+                ref_count_ = bounded_ptr.ref_count_;
+                use_ = bounded_ptr.use_;
+                if (!IncrementRefCount()) 
+                {
+                    throw BoundedCopyException(use_);
+                }
             }
             return *this;
         }
