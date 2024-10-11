@@ -37,8 +37,8 @@
  * Copying means copying the contained StringPrinters as well.
  * Remember to also implement the destructor.
  */
-#ifndef PRINTERS
-#define PRINTERS
+#ifndef AALTO_PRINTERS_H
+#define AALTO_PRINTERS_H
 
 #include <unordered_map>
 #include "string_printer.hpp"

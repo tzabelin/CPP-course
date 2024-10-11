@@ -16,8 +16,8 @@
  * newline at the end. For the string "like this":
  * like this\n
 */
-#ifndef STANDARDPRINTER_H
-#define STANDARDPRINTER_H
+#ifndef AALTO_STANDARDPRINTER_H
+#define AALTO_STANDARDPRINTER_H
 
 #include "string_printer.hpp"
 #include <iostream>

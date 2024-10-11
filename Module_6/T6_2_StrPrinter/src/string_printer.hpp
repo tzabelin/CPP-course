@@ -32,8 +32,8 @@
  * is left for you to figure out.
  */
 
-#ifndef STRINGPRINTER_H
-#define STRINGPRINTER_H
+#ifndef AALTO_STRINGPRINTER_H
+#define AALTO_STRINGPRINTER_H
 
 #include <iostream>
 #include <string>

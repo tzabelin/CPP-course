@@ -11,19 +11,19 @@ StringPrinter& DiagonalPrinter::operator()(const std::string& str)
 {
     if (first_line_ != "") 
     {
-        os_ << first_line_ << '\n';
+        os_ << first_line_ << std::endl;
     }
-
+    std::cout << "Test" << std::endl;
     int i = 0;
     int n = str.length();
     for (char c : str) 
     {
-        os_ << std::string(i, ' ') << c <<  std::string(n - 1 - i, ' ') << '\n';
+        os_ << std::string(i, ' ') << c <<  std::string(n - 1 - i, ' ') << std::endl;
         i += 1;
     }
     if (last_line_ != "") 
     {
-        os_ << last_line_ << '\n';
+        os_ << last_line_ << std::endl;
     }
 
     return *this;
