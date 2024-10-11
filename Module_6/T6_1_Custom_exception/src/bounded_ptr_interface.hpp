@@ -83,7 +83,8 @@ template <typename T> BoundedPtr<T> CopyBounded(const BoundedPtr<T>& bounded_ptr
     try 
     {
         return BoundedPtr<T>(bounded_ptr);
-    } catch (const BoundedCopyException& ex) 
+    } 
+    catch (const MyMemoryAllocator::BoundedCopyException& ex) 
     {
         std::cout << ex.GetError() << std::endl;
         return BoundedPtr<T>();

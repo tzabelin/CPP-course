@@ -34,7 +34,7 @@ namespace MyMemoryAllocator
          * \brief Construct a new Bounded Ptr object with null pointer and use_ initialized with "nullptr" string.
          *
          */
-        BoundedPtr() : raw_pointer_(nullptr), ref_count_(new int(1)), use_("nullptr") {};
+        BoundedPtr() : raw_pointer_(nullptr), ref_count_(new int(1)), use_("nullptr") {}
 
         // constructor when it is called with a pointer
 
@@ -44,7 +44,7 @@ namespace MyMemoryAllocator
          * \param pointer_val the pointer to be managed by this object
          * \param use The usage of the pointer
          */
-        BoundedPtr(T *pointer_val, const std::string &use) :: raw_pointer_(pointer_val), ref_count_(new int(1)), use_(use) {};
+        BoundedPtr(T *pointer_val, const std::string &use) : raw_pointer_(pointer_val), ref_count_(new int(1)), use_(use) {}
 
         // copy constructor
         /**
