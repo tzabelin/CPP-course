@@ -45,4 +45,36 @@
 #include <exception>
 #include <string>
 
+namespace MyMemoryAllocator 
+{
+class BoundedPtrException : public std::exception 
+{
+public:
+    BoundedPtrException(const std::string& use);
+    virtual std::string GetError() const = 0;
+    std::string GetUse() const;
+    const char* what() const noexcept override;
+protected:
+    std::string use_;
+};
+
+class BoundedCopyException : public BoundedPtrException 
+{
+public:
+    BoundedCopyException(const std::string& use);
+    std::string GetError() const override;
+};
+
+class BoundedNullException : public BoundedPtrException 
+{
+public:
+    BoundedNullException(const std::string& use);
+    std::string GetError() const override;
+};
+
+}
+
+#include <exception>
+#include <string>
+
 #endif

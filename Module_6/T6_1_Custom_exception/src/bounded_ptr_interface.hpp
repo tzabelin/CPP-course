@@ -73,5 +73,21 @@ std::ostream &operator<<(std::ostream &os, BoundedPtr<T> &bounded_ptr)
     return os;
 }
 
+template <typename T> BoundedPtr<T> MakeBounded(T* ptr) 
+{
+    return BoundedPtr<T>(ptr, "BoundedPtr instance");
+}
+
+template <typename T> BoundedPtr<T> CopyBounded(const BoundedPtr<T>& bounded_ptr) 
+{
+    try 
+    {
+        return BoundedPtr<T>(bounded_ptr);
+    } catch (const BoundedCopyException& ex) 
+    {
+        std::cout << ex.GetError() << std::endl;
+        return BoundedPtr<T>();
+    }
+}
 #endif
 

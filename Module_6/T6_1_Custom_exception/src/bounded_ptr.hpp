@@ -22,6 +22,8 @@
 #define AALTO_ELEC_CPP_RESTRICTED_PTR_CLASS
 
 #include "bounded_ptr_ex.hpp"
+namespace MyMemoryAllocator 
+{
     const int kMaxReferenceCount = 3;
     template <typename T>
     class BoundedPtr
@@ -32,7 +34,7 @@
          * \brief Construct a new Bounded Ptr object with null pointer and use_ initialized with "nullptr" string.
          *
          */
-        BoundedPtr();
+        BoundedPtr() : raw_pointer_(nullptr), ref_count_(new int(1)), use_("nullptr") {};
 
         // constructor when it is called with a pointer
 
@@ -42,7 +44,7 @@
          * \param pointer_val the pointer to be managed by this object
          * \param use The usage of the pointer
          */
-        BoundedPtr(T *pointer_val, const std::string &use);
+        BoundedPtr(T *pointer_val, const std::string &use) :: raw_pointer_(pointer_val), ref_count_(new int(1)), use_(use) {};
 
         // copy constructor
         /**
@@ -50,17 +52,55 @@
          *
          * \param bounded_ptr the source object to be copied into this one
          */
-        BoundedPtr(const BoundedPtr<T> &bounded_ptr);
+        BoundedPtr(const BoundedPtr<T> &bounded_ptr) : raw_pointer_(bounded_ptr.raw_pointer_), ref_count_(bounded_ptr.ref_count_), use_(bounded_ptr.use_) 
+        {
+            if (!IncrementRefCount()) 
+            {
+                throw BoundedCopyException(use_);
+            }
+        }
 
         // destructor, only delete the object if the reference count drops to zero
-        ~BoundedPtr();
+        ~BoundedPtr()
+        {
+            if (DecrementRefCount() == 0) 
+            {
+                delete raw_pointer_;
+                delete ref_count_;
+            }
+        }
 
         // copy assignment
-        BoundedPtr<T> &operator=(const BoundedPtr<T> &bounded_ptr);
+        BoundedPtr<T> &operator=(const BoundedPtr<T> &bounded_ptr)
+        {
+            if (this != &bounded_ptr) 
+            {
+                if (DecrementRefCount() == 0) 
+                {
+                    delete raw_pointer_;
+                    delete ref_count_;
+                }
+            raw_pointer_ = bounded_ptr.raw_pointer_;
+            ref_count_ = bounded_ptr.ref_count_;
+            use_ = bounded_ptr.use_;
+            if (!IncrementRefCount()) 
+            {
+                throw BoundedCopyException(use_);
+            }
+            }
+            return *this;
+        }
 
         // member function to get the data from pointer
         // this is given as a reference, so it can be modified
-        T &GetData();
+        T &GetData()
+        {
+            if (raw_pointer_ == nullptr) 
+            {
+                throw BoundedNullException(use_);
+            }
+            return *raw_pointer_;
+        }
 
         // member function to get the pointer address
         T *GetPointer()
@@ -121,6 +161,6 @@
             return *ref_count_;
         }
     };
-
+}
     
 #endif
