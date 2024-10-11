@@ -13,7 +13,7 @@ StringPrinter& DiagonalPrinter::operator()(const std::string& str)
     {
         os_ << first_line_ << std::endl;
     }
-    std::cout << "Test" << std::endl;
+    //std::cout << "Test" << std::endl;
     int i = 0;
     int n = str.length();
     for (char c : str) 
