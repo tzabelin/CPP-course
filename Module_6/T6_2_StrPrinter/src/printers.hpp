@@ -37,3 +37,24 @@
  * Copying means copying the contained StringPrinters as well.
  * Remember to also implement the destructor.
  */
+#ifndef PRINTERS
+#define PRINTERS
+
+#include <unordered_map>
+#include "string_printer.hpp"
+
+class Printers 
+{
+    public:
+    Printers();
+    Printers(const Printers& a);
+    ~Printers();
+    void Add(const std::string& name, StringPrinter* printer);
+    StringPrinter& operator[](const std::string& name);
+    Printers& operator=(const Printers& other);
+
+private:
+    std::unordered_map<std::string, StringPrinter*> printers_;
+};
+
+#endif

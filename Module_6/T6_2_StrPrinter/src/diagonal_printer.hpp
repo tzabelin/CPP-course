@@ -33,3 +33,22 @@ l        \n
  * to the last line.
  */
 
+#ifndef DIAGONALPRINTER_H
+#define DIAGONALPRINTER_H
+
+#include "string_printer.hpp"
+#include <iostream>
+#include <string>
+
+class DiagonalPrinter : public StringPrinter 
+{
+public:
+    DiagonalPrinter(const std::string& first_line = "", const std::string& last_line = "", std::ostream& os = std::cout);
+    virtual StringPrinter* Clone() const override;
+    virtual StringPrinter& operator()(const std::string& str) override;
+private:
+    std::string first_line_;
+    std::string last_line_;
+};
+
+#endif

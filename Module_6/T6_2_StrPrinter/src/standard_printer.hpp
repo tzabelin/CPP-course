@@ -16,3 +16,19 @@
  * newline at the end. For the string "like this":
  * like this\n
 */
+#ifndef AALTO_STANDARDPRINTER_H
+#define STANDARDPRINTER_H
+
+#include "string_printer.hpp"
+#include <iostream>
+#include <string>
+
+class StandardPrinter : public StringPrinter 
+{
+public:
+    StandardPrinter(std::ostream& os = std::cout);
+    virtual StringPrinter* Clone() const override;
+    virtual StringPrinter& operator()(const std::string& str) override;
+};
+
+#endif

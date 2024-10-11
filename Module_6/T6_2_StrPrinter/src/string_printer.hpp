@@ -32,3 +32,21 @@
  * is left for you to figure out.
  */
 
+#ifndef STRINGPRINTER_H
+#define STRINGPRINTER_H
+
+#include <iostream>
+#include <string>
+
+class StringPrinter 
+{
+public:
+    StringPrinter(std::ostream& os = std::cout) : os_(os) {}
+    virtual ~StringPrinter() {}
+    virtual StringPrinter* Clone() const = 0;
+    virtual StringPrinter& operator()(const std::string& str) = 0;
+protected:
+    std::ostream& os_;
+};
+
+#endif
