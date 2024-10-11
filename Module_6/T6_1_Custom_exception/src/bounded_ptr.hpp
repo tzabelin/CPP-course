@@ -63,7 +63,7 @@ namespace MyMemoryAllocator
         // destructor, only delete the object if the reference count drops to zero
         ~BoundedPtr()
         {
-            if (DecrementRefCount() == 0) 
+            if (ref_count_ != nullptr && DecrementRefCount() == 0) 
             {
                 delete raw_pointer_;
                 delete ref_count_;
@@ -75,7 +75,7 @@ namespace MyMemoryAllocator
         {
             if (this != &bounded_ptr) 
             {
-                if (DecrementRefCount() == 0) 
+                if (ref_count_ != nullptr && DecrementRefCount() == 0) 
                 {
                     delete raw_pointer_;
                     delete ref_count_;
