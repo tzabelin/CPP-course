@@ -9,7 +9,7 @@ StringPrinter* DiagonalPrinter::Clone() const
 
 StringPrinter& DiagonalPrinter::operator()(const std::string& str) 
 {
-    if (!first_line_.empty()) 
+    if (first_line_ != "") 
     {
         os_ << first_line_ << '\n';
     }
@@ -21,7 +21,7 @@ StringPrinter& DiagonalPrinter::operator()(const std::string& str)
         os_ << std::string(i, ' ') << c <<  std::string(n - 1 - i, ' ') << '\n';
         i += 1;
     }
-    if (!last_line_.empty()) 
+    if (last_line_ != "") 
     {
         os_ << last_line_ << '\n';
     }
