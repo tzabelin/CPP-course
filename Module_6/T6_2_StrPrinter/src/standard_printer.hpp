@@ -30,14 +30,5 @@ public:
     virtual StringPrinter* Clone() const override;
     virtual StringPrinter& operator()(const std::string& str) override;
 };
-StandardPrinter::StandardPrinter(std::ostream& os) : StringPrinter(os) {}
-StringPrinter* StandardPrinter::Clone() const 
-{
-    return new StandardPrinter(os_);
-}
-StringPrinter& StandardPrinter::operator()(const std::string& str) 
-{
-    os_ << str << '\n';
-    return *this;
-}
+
 #endif
